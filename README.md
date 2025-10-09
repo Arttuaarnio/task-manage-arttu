@@ -85,29 +85,49 @@ The application will be available at:
 
 ## Tasks
 
-## References
+Your goal is to implement a  CI/CD pipeline for the Task Management System:
 
+1. **Set Up a CI/CD Workflow:** (1 points)
+   - Use GitHub Actions to automate your workflow.
+   - The pipeline should run on every push and pull request to the main branch.
+
+2. **Automate Testing and Linting:** (1 points)
+   - Configure the pipeline to run backend and frontend tests.
+   - Add a linter step to check code quality.
+
+   **HUOM** Coverage testin ajaminen ja tuloksen vieminen artifactina voisi olla kiva lisä. Täytyy ihmetellä tuota.
+
+3. **Security** (1 points)
+   - Integrate CodeQL analysis in the CI/CD pipeline to automatically scan for vulnerabilities.
+   - Add steps to check for outdated or vulnerable dependencies using tools like `npm audit`.
+   
+   **HUOM** Nyt token on tallennettu selaimen localstorage:en josta varamasti tulee CodeQL hälytys. Tuo pitäisi muuttaa HttpOnly cookieksi.
+
+4. **Docker Integration:** (3 points)
+   - Build Docker images for the backend and frontend as part of the pipeline.
+   - Optionally, push images to a container registry.
+
+5. **Deployment:** (3 points)
+   - Automate deployment to a cloud service (e.g., Render, Rahti).
+
+6. **Monitoring** (2 points)
+   - SOMETHING SIMPLE HERE
+   Bäkkärissä on health check url
+   Lokituksen monitorointi?
+
+PISTEYTYS ON ALUSTAVA...TUO TÄYTYY MYÖS MIETTIÄ
+
+## Tips for Getting Started
+
+- **Start simple:** Begin by setting up a basic GitHub Actions workflow that runs on push and pull requests.
+- **Incremental approach:** Add one CI/CD step at a time (e.g., first linting, then testing, then Docker build).
+- **Use official actions:** Leverage pre-built GitHub Actions for Node.js, Docker, and CodeQL to simplify your workflow.
+- **Test locally:** Make sure your tests and Docker builds work locally before automating them in CI/CD.
+- **Read documentation:** Refer to [GitHub Actions docs](https://docs.github.com/en/actions) and [Docker docs](https://docs.docker.com/) for examples and troubleshooting.
+- **Monitor pipeline runs:** Check the Actions tab in your repository for logs and troubleshooting information.
+- **Iterate and improve:** Refine your workflow as you discover new requirements or issues.
+
+## References 
 The following Docker workshop provides clear instructions that are helpful for completing the tasks in this project: https://docs.docker.com/get-started/workshop
 
 Muita linkkejä jotka auttavat...
-
-Tänne tehtävät
-
-## CI/CD Pipeline
-
-Run linter & test
-Coverage testin ajaminen ja tuloksen vieminen artifactina voisi olla kiva lisä. Täytyy ihmetellä tuota.
-Build
-
-## Deployment
-Render deployment tai Rahti
-
-## Security
-CodeQL
-Dependencies
-
-**HUOM** Nyt token on tallennettu elaimen localstorage:en josta varamasti tulee CodeQL hälytys. Tuo pitäisi muuttaa HttpOnly cookieksi.
-
-## Monitoring
-Bäkkärissä on health check url
-Lokituksen monitorointi?
