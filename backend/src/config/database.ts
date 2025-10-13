@@ -28,6 +28,9 @@ export const connectDB = async (): Promise<void> => {
     }
   } catch (error) {
     console.error('❌ Unable to connect to the database:', error);
-    process.exit(1);
+    // Don't exit in test environment
+    if (process.env.NODE_ENV !== 'test') {
+      process.exit(1);
+    }
   }
 };

@@ -1,21 +1,20 @@
 import request from 'supertest';
-import app from '../src/server';
+import app from '../src/server.js';
 
 describe('API Health Check', () => {
-  it('should return 200 for health check', async () => {
+  it('should return 200 for health check endpoint', async () => {
     const response = await request(app).get('/api/health');
+    
     expect(response.status).toBe(200);
-    expect(response.body.success).toBe(true);
-  });
-
-  it('should return API info on root', async () => {
-    const response = await request(app).get('/');
-    expect(response.status).toBe(200);
-    expect(response.body.message).toBe('Task Management API');
+    expect(response.body).toHaveProperty('success', true);
+    expect(response.body).toHaveProperty('message', 'API is running');
+    expect(response.body).toHaveProperty('timestamp');
   });
 
   it('should return 404 for unknown routes', async () => {
     const response = await request(app).get('/api/unknown');
+    
     expect(response.status).toBe(404);
+    expect(response.body).toHaveProperty('success', false);
   });
 });

@@ -13,8 +13,10 @@ dotenv.config();
 
 const app: Application = express();
 
-// Connect to database
-connectDB();
+// Connect to database only if not in test mode
+if (process.env.NODE_ENV !== 'test') {
+  connectDB();
+}
 
 // Middleware
 app.use(helmet()); // Security headers
@@ -49,8 +51,11 @@ app.use(errorHandler);
 // Start server
 const PORT = config.port;
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT} in ${config.nodeEnv} mode`);
-});
+// Only start listening if not in test environment
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT} in ${config.nodeEnv} mode`);
+  });
+}
 
 export default app;
