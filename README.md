@@ -193,6 +193,26 @@ Your goal is to implement a CI pipeline for the Task Management System:
          ```
          VITE_API_URL=<BACKEND URL>/api
          ```
+   4. **CI/CD pipeline**
+      - Disable automatic deployment for both backend and frontend services in Render.com.
+      - Update your CI workflow from Task 2 to include a CD (Continuous Deployment) step.
+      - Configure deployment to trigger only when a new release tag is pushed.
+
+> **Tip:** Render.com provides **Blueprints**, which are YAML files that define your entire infrastructure as code (IaC). Blueprints allow you to version, review, and automate the setup of services, databases, environment variables, and more directly from your repository.  
+>  
+> With Blueprints, you can:
+> - Describe all resources (web services, static sites, databases) in a single file.
+> - Automate deployments and updates by pushing changes to your repository.
+> - Ensure consistent environments across teams and deployments.
+>  
+> To use Blueprints for deployment:
+> 1. Create a `render.yaml` file in your repository root.
+> 2. Define your services, build commands, environment variables, and database configuration in the file.
+> 3. Connect your repository to Render.com and enable Blueprint deployment.
+> 4. Render will automatically provision and update resources based on your Blueprint file.
+>  
+> Learn more: [Render Blueprints documentation](https://render.com/docs/infrastructure-as-code)
+
 
 ## Task 6. Monitoring
 - SOMETHING SIMPLE HERE: Bäkkärissä on health check url. Lokituksen monitorointi?
