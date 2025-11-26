@@ -24,6 +24,10 @@ jobs:
         working-directory: ./backend
         run: npm ci
 
+      - name: Audit backend dependencies
+        working-directory: ./backend
+        run: npm audit --audit-level=moderate
+
       - name: Run backend linter
         working-directory: ./backend
         run: npm run lint
@@ -47,6 +51,10 @@ jobs:
       - name: Install frontend dependencies
         working-directory: ./frontend
         run: npm ci
+
+      - name: Audit frontend dependencies
+        working-directory: ./frontend
+        run: npm audit --audit-level=moderate
 
       - name: Run frontend linter
         working-directory: ./frontend
