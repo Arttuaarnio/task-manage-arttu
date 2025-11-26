@@ -36,6 +36,9 @@ jobs:
         working-directory: ./backend
         run: npm run test
 
+      - name: Build backend Docker image
+        run: docker build -t backend ./backend
+
   frontend:
     runs-on: ubuntu-latest
     needs: backend
@@ -63,3 +66,6 @@ jobs:
       - name: Run frontend tests
         working-directory: ./frontend
         run: npm run test
+
+      - name: Build frontend Docker image
+        run: docker build --build-arg VITE_API_URL=http://localhost:5000/api -t frontend ./frontend
