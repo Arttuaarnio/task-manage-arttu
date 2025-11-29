@@ -80,12 +80,12 @@ jobs:
     steps:
       - name: Deploy Backend to Render.com
         env:
-          deploy_url: ${{ secrets.RENDER_BACKEND_HOOK_URL }}
+          deploy_url: ${{ secrets.RENDER_BACKEND_DEPLOY_HOOK }}
         run: |
           curl "$deploy_url"
 
       - name: Deploy Frontend to Render.com
         env:
-          deploy_url: ${{ secrets.RENDER_FRONTEND_HOOK_URL }}
+          deploy_url: ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK }}
         run: |
           curl "$deploy_url"
