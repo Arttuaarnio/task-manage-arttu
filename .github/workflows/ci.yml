@@ -4,9 +4,12 @@ on:
   push:
     branches:
       - main
+    tags:
+      - "v*.*.*" 
   pull_request:
     branches:
       - main
+
 
 jobs:
   backend:
@@ -69,3 +72,15 @@ jobs:
 
       - name: Build frontend Docker image
         run: docker build --build-arg VITE_API_URL=http://localhost:5000/api -t frontend ./frontend
+
+  deploy:
+    needs: [backend, frontend]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - name: Trigger Render backend deploy
+        run: curl -X POST "${{ secrets.RENDER_BACKEND_HOOK_URL }}"
+
+      - name: Trigger Render frontend deploy
+        run: curl -X POST "${{ secrets.RENDER_FRONTEND_HOOK_URL }}"
+
