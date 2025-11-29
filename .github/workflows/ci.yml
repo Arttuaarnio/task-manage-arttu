@@ -11,7 +11,6 @@ on:
     types:
       - published 
 
-
 jobs:
   backend:
     runs-on: ubuntu-latest
@@ -79,9 +78,14 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'release'
     steps:
-      - name: Trigger Render backend deploy
-        run: curl -X POST "${{ secrets.RENDER_BACKEND_HOOK_URL }}"
+      - name: Deploy Backend to Render.com
+        env:
+          deploy_url: ${{ secrets.RENDER_BACKEND_HOOK_URL }}
+        run: |
+          curl "$deploy_url"
 
-      - name: Trigger Render frontend deploy
-        run: curl -X POST "${{ secrets.RENDER_FRONTEND_HOOK_URL }}"
-
+      - name: Deploy Frontend to Render.com
+        env:
+          deploy_url: ${{ secrets.RENDER_FRONTEND_HOOK_URL }}
+        run: |
+          curl "$deploy_url"
